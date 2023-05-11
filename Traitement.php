@@ -23,6 +23,13 @@ session_start(); //Démarrer une session sur le serveur pour l'utilisateur coura
                                                 $_SESSION["products"] doit être lui aussi un tableau afin d'y stocker de nouveaux 
                                                 produits par la suite.*/ 
         }
+
+        if(!isset($_SESSION['alerts'])  == true){
+            $_SESSION['alerte'] = "<span>+1</span>";
+        }else{
+            $_SESSION['alerte'] = "Veuillez réesseyer";
+        }
+
     }
 
 header("Location:Index.php"); // Redirection grâce à la fonction header()

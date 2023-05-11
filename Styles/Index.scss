@@ -4,9 +4,11 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+
 body{
-    background-color: rgb(45, 45, 62);
+    background-color: rgb(255, 234, 210);
 }
+
 .wrapper{
     display: flex;
     flex-direction: column;
@@ -24,12 +26,13 @@ nav{
     padding: 25px;
     }
     span{
-       display:flex;
-       justify-content: center;
-       align-items: center;
+        display:flex;
+        justify-content: center;
+        align-items: center;
         position: absolute;
         right: 20px;
         top: 20px;
+        color: ghostwhite;
         background-color: red;
         text-align: center;
         border-radius: 20px;
@@ -45,7 +48,8 @@ nav{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: solid ghostwhite 1px;
+    background-color: rgb(172, 177, 214);
+    border: solid rgb(219, 223, 234) 1px;
     padding: 25px;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.300) 0px 2px 30px 2px;
@@ -60,6 +64,7 @@ nav{
         font-size: larger;
         font-weight: 500;
         input{
+            transition: all 0.4s ease-in-out;
             font-weight: 400;
             color: rgb(45, 45, 62);
             background-color: rgba(248, 248, 255, 0.8);
@@ -71,12 +76,14 @@ nav{
             margin: 20px 0 20px 0;
             font-size: 15px;
             box-shadow: inset rgba(98, 98, 98, 0.300) 0px 0px 15px 0px;
-
+            
         }
+        
     }
     input:focus{
         outline: none;
-        background-color: rgba(248, 248, 255);
+        transform: scale(1.04);
+        background-color: rgb(255, 255, 255);
     }
     p{
         display: flex;
@@ -89,24 +96,28 @@ nav{
         justify-content: center;
         align-items: center;
         font-size: 50px;
+        span{
+            font-size: medium;
+        }
         input{
             font-weight: 500;
             color: rgb(255, 255, 255);
-            background-color: rgb(45, 45, 62);
+            background-color: rgb(130, 148, 196);
             border-radius: 25px;
             padding: 0 15px;
             font-size: 20px;
             transition: all 0.2s ease-in-out;
-            border: solid 2px rgba(248, 248, 255, 0.300);
+            border: solid 2px  rgb(219, 223, 234);
             width: 200px;
             height: 50px;
             margin: 25px 0;
-            box-shadow: rgba(0, 0, 0, 0.500) 0px 0px 30px 0px;
+            box-shadow: rgba(0, 0, 0, 0.300) 0px 0px 20px 0px;
             &:hover{
-                background-color: rgba(248, 248, 255);
-                color: rgb(45, 45, 62);
-                transform: scale(1.05);
-                box-shadow: rgba(0, 0, 0, 0.800) 0px 0px 30px 0px;
+                background-color:  rgb(219, 223, 234);
+                color: rgb(130, 148, 196);
+                border: solid rgb(130, 148, 196) 2px;
+                transform: scale(1.03);
+                box-shadow: rgba(0, 0, 0, 0.200) 0px 0px 25px 0px;
                 backdrop-filter: blur(10px);
             }
         }

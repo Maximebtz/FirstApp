@@ -15,7 +15,7 @@
     </head>
     <body>
         <nav>
-            <a href="./Recap.php"><i class="fa-solid fa-cart-shopping" style="color: #ffffff;"><span>
+            <a href="./Recap.php"><i class="fa-solid fa-cart-shopping" style="color: rgb(130, 148, 196);"></i><span style="color: #FFFFFF;">
                 <?php 
                     $count = 0;
                     if (isset($_SESSION['products'])) {
@@ -23,7 +23,7 @@
                     }
                     echo $count; 
                 ?> 
-            </span></i></a>
+            </span></a>
         </nav>
                 
                
@@ -50,6 +50,15 @@
                         </label>
                     </p>
                     <p class="submit">
+                        <span>
+                            <?php 
+                                $message = '';
+                                if (isset($_SESSION['alerts'])) {
+                                    $message = $_SESSION['alerts'];
+                                }
+                                echo $message;
+                            ?>  
+                        </span>
                         <input  type="submit" name="submit" value="Ajouter le produit">
                     </p>
                 </form>

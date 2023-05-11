@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: rgb(45, 45, 62);
+  background-color: rgb(255, 234, 210);
 }
 
 .wrapper {
@@ -45,7 +45,8 @@ nav span {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: solid ghostwhite 1px;
+  background-color: rgb(172, 177, 214);
+  border: solid rgb(219, 223, 234) 1px;
   padding: 25px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 30px 2px;
@@ -62,6 +63,7 @@ nav span {
   font-weight: 500;
 }
 .card label input {
+  transition: all 0.4s ease-in-out;
   font-weight: 400;
   color: rgb(45, 45, 62);
   background-color: rgba(248, 248, 255, 0.8);
@@ -76,7 +78,8 @@ nav span {
 }
 .card input:focus {
   outline: none;
-  background-color: rgb(248, 248, 255);
+  transform: scale(1.04);
+  background-color: rgb(255, 255, 255);
 }
 .card p {
   display: flex;
@@ -90,25 +93,32 @@ nav span {
   align-items: center;
   font-size: 50px;
 }
+.card .submit span {
+  font-size: small;
+}
+.card .submit input span:focus {
+  transform: translateY(10px);
+}
 .card .submit input {
   font-weight: 500;
   color: rgb(255, 255, 255);
-  background-color: rgb(45, 45, 62);
+  background-color: rgb(130, 148, 196);
   border-radius: 25px;
   padding: 0 15px;
   font-size: 20px;
   transition: all 0.2s ease-in-out;
-  border: solid 2px rgba(248, 248, 255, 0.3);
+  border: solid 2px rgb(219, 223, 234);
   width: 200px;
   height: 50px;
   margin: 25px 0;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 30px 0px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px 0px;
 }
 .card .submit input:hover {
-  background-color: rgb(248, 248, 255);
-  color: rgb(45, 45, 62);
-  transform: scale(1.05);
-  box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 30px 0px;
+  background-color: rgb(219, 223, 234);
+  color: rgb(130, 148, 196);
+  border: solid rgb(130, 148, 196) 2px;
+  transform: scale(1.03);
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 30px 0px;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
 }/*# sourceMappingURL=Index.css.map */

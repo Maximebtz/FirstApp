@@ -16,7 +16,7 @@
     </head>
     <body>
         <nav>
-            <a href="./Index.php"><i class="fa-solid fa-house" style="color: #ffffff;"></i></a>
+            <a href="./Index.php"><i class="fa-solid fa-house" style="color: rgb(130, 148, 196);""></i></a>
         </nav>
         <div class="wrapper"> 
             <div class="card">   
@@ -59,8 +59,6 @@
                     "</tbody>",
                     "</table>";
                 }
-
-                
                 ?>
             </div>
         </div>

@@ -34,7 +34,16 @@
     }
 
     .card{
-        padding: 25px;
+        p{
+            padding-bottom: 25px;
+            font-size: 2.5em;
+        }
+        h3{
+            font-size: 2.5em;
+            color: ghostwhite;
+            margin: 50px;
+        }
+        padding: 0 25px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -43,11 +52,38 @@
         border: solid rgb(219, 223, 234) 1px;
         border-radius: 10px;
         box-shadow: rgba(0, 0, 0, 0.300) 0px 2px 30px 2px;
+        img{
+            width: 400px;
+        }
+    }
+
+    form{
+        input{
+            font-weight: 500;
+            color: rgb(255, 255, 255);
+            background-color: rgb(130, 148, 196);
+            border-radius: 25px;
+            padding: 0 15px;
+            font-size: 20px;
+            transition: all 0.2s ease-in-out;
+            border: solid 2px  lightcoral;
+            height: 35px;
+            margin: 50px 0;
+            box-shadow: rgba(0, 0, 0, 0.300) 0px 0px 20px 0px;
+            &:hover{
+                background-color:  rgb(219, 223, 234);
+                color: rgb(130, 148, 196);
+                border: solid rgb(130, 148, 196) 2px;
+                transform: scale(1.03);
+                box-shadow: rgba(0, 0, 0, 0.200) 0px 0px 25px 0px;
+                backdrop-filter: blur(10px);
+            }
+        }
     }
 
     table {
-    width: 700px;
-    border-spacing: 0;
+        width: 700px;
+        border-spacing: 0;
     }
   
     tr:first-child {
@@ -91,3 +127,6 @@
         color: ghostwhite;
         font-weight: 600;
     }
+
+
+    

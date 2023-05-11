@@ -22,15 +22,20 @@ session_start(); //Démarrer une session sur le serveur pour l'utilisateur coura
                                                 ajoutons une nouvelle entrée au futur tableau "products" associé à cette clé. 
                                                 $_SESSION["products"] doit être lui aussi un tableau afin d'y stocker de nouveaux 
                                                 produits par la suite.*/ 
-        }
 
-        if(!isset($_SESSION['alerts'])  == true){
-            $_SESSION['alerte'] = "<span>+1</span>";
-        }else{
-            $_SESSION['alerte'] = "Veuillez réesseyer";
-        }
+            $_SESSION['error_message'] = "+1";
 
+        } else { // Une ou plusieurs valeurs du formulaire sont invalides, donc on affiche un message d'erreur
+            
+            $_SESSION['error_message'] = "Nop !!";
+        
+        }
+        
     }
-
+    
+    if(isset($_POST['deleteAll'])){
+        session_destroy(); //Suppression de la session
+    }
+    
 header("Location:Index.php"); // Redirection grâce à la fonction header()
 ?>

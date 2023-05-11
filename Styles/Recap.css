@@ -32,7 +32,7 @@ body {
 }
 
 .card {
-  padding: 25px;
+  padding: 0 25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -41,6 +41,41 @@ body {
   border: solid rgb(219, 223, 234) 1px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 30px 2px;
+}
+.card p {
+  padding-bottom: 25px;
+  font-size: 2.5em;
+}
+.card h3 {
+  font-size: 2.5em;
+  color: ghostwhite;
+  margin: 50px;
+}
+.card img {
+  width: 400px;
+}
+
+form input {
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  background-color: rgb(130, 148, 196);
+  border-radius: 25px;
+  padding: 0 15px;
+  font-size: 20px;
+  transition: all 0.2s ease-in-out;
+  border: solid 2px lightcoral;
+  height: 35px;
+  margin: 50px 0;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 20px 0px;
+}
+form input:hover {
+  background-color: rgb(219, 223, 234);
+  color: rgb(130, 148, 196);
+  border: solid rgb(130, 148, 196) 2px;
+  transform: scale(1.03);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 25px 0px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
 }
 
 table {
@@ -70,8 +105,8 @@ th {
   height: 55px;
   vertical-align: middle;
   text-align: center;
-  border-bottom: rgba(130, 148, 196, 0.807) solid 1px;
   border-collapse: collapse;
+  border-bottom: rgba(255, 234, 210, 0.802) solid 1px;
 }
 
 td {
@@ -81,7 +116,7 @@ td {
   vertical-align: middle;
   text-align: center;
   color: rgb(255, 255, 255);
-  border-bottom: rgba(255, 234, 210, 0.802) solid 1px;
+  border-bottom: rgba(130, 148, 196, 0.807) solid 1px;
   white-space: nowrap;
 }
 

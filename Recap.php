@@ -25,9 +25,12 @@
                 // var_dump($_SESSION);
                 // echo "</pre>";
                 if(!isset($_SESSION['products']) || empty($_SESSION['products'])){ // Soit la clé "products" du tableau de session $_SESSION n'existe pas : !isset(),Soit cette clé existe mais ne contient aucune donnée : empty().
-                    echo "<p>Aucun produit en  session...</p>";
+                    echo "<p>Aucun produit...</p>
+                    <img src='./Img/Empty-amico.svg'>";
                 }else{
-                    echo "<table>",
+                    echo " <h3>Produits ajoutés :</h3>
+                    
+                    <table>",
                             "<thead>", // <thead>, afin de bien décomposer les données de chaque produit.
                                 "<tr>",
                                     "<th>#</th>",
@@ -58,6 +61,14 @@
                         "</tr>",
                     "</tbody>",
                     "</table>";
+                }
+
+                if(isset($_SESSION['products']) == 0){
+                    echo "";
+                }else{
+                    echo "<form action='./Traitement.php' method='post'>
+                            <input type='submit' name='deleteAll' value='Supprimer tout les articles'>
+                        </form>";
                 }
                 ?>
             </div>

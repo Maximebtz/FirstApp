@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,12 +16,17 @@
     <body>
         <nav>
             <a href="./Recap.php"><i class="fa-solid fa-cart-shopping" style="color: #ffffff;"><span>
-               <?php 
-                  echo count(['products']) 
+                <?php 
+                    $count = 0;
+                    if (isset($_SESSION['products'])) {
+                        $count = count($_SESSION['products']);
+                    }
+                    echo $count; 
                 ?> 
             </span></i></a>
         </nav>
                 
+               
         <div class="wrapper">
             <div class="card">
                 <h1>Ajouter produit</h1>

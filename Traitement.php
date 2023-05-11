@@ -4,7 +4,7 @@ session_start(); //Démarrer une session sur le serveur pour l'utilisateur coura
 
     if(isset($_POST['submit'])){ // Vérification de l'existence 'submit'    
 
-        $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING); // FILTER_SANITIZE_STRING supp une chaine de caractère de toute présence de caractères spéciaux et de toute balise HTML potentielle ou les encode. Pas d'injection de code HTML possible !
+        $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS); // FILTER_SANITIZE_STRING supp une chaine de caractère de toute présence de caractères spéciaux et de toute balise HTML potentielle ou les encode. Pas d'injection de code HTML possible !
         $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION); // FILTER_VALIDATE_FLOAT (champ 'price') : validera le prix que s'il est un nombre à virgule (pas de texte ou autre…), le drapeau FILTER_FLAG_ALLOW_FRACTION est ajouté pour permettre l'utilisation du caractère "," ou "." pour la décimale.
         $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT); // FILTER_VALIDATE_INT (champ "qtt") : ne validera la quantité que si celle-ci est un nombre entier, au moins égal à 1.
         

@@ -1,0 +1,88 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+p {
+  color: ghostwhite;
+  font-family: "Roboto", sans-serif;
+  font-size: larger;
+  font-weight: 500;
+}
+
+nav .fa-solid {
+  position: absolute;
+  right: 0;
+  font-size: 35px;
+  padding: 25px;
+}
+
+body {
+  background-color: rgb(45, 45, 62);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid ghostwhite 1px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 30px 2px;
+}
+
+table {
+  width: 700px;
+  border-spacing: 0;
+}
+
+tr:first-child {
+  vertical-align: middle;
+  color: ghostwhite;
+  font-size: larger;
+}
+
+tr {
+  text-align: center;
+  width: 100%;
+}
+
+tr:nth-child(2) {
+  background-color: rgba(248, 248, 255, 0.3);
+}
+
+th {
+  width: 150px;
+  height: 55px;
+  vertical-align: middle;
+  text-align: center;
+  border-bottom: lightgray solid 1px;
+  border-collapse: collapse;
+}
+
+td {
+  width: 150px;
+  height: 55px;
+  text-align: center;
+  vertical-align: middle;
+  text-align: center;
+  color: rgb(200, 200, 200);
+  border-bottom: lightgray solid 1px;
+  white-space: nowrap;
+}
+
+td:last-child {
+  color: ghostwhite;
+  font-weight: 500;
+}/*# sourceMappingURL=Recap.css.map */

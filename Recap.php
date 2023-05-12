@@ -21,60 +21,62 @@
         <div class="wrapper"> 
             <div class="card">   
                 <?php
-                if(!isset($_SESSION['products']) || empty($_SESSION['products'])){ // Soit la clé "products" du tableau de session $_SESSION n'existe pas : !isset(),Soit cette clé existe mais ne contient aucune donnée : empty().
-                    echo "<h3>Aucun produit...</h3>
-                    <img src='./Img/Empty-amico.svg'>";
-                }else{
-                    echo " <h3>Produits ajoutés :</h3>
-                    
-                    <table>",
-                            "<thead>", // <thead>, afin de bien décomposer les données de chaque produit.
-                                "<tr>",
-                                    "<th>#</th>",
-                                    "<th>Nom</th>",
-                                    "<th>Prix</th>",
-                                    "<th>Quantité</th>",
-                                    "<th>Total</th>",
-                                "</tr>",
-                            "</thead>",
-                            "<tbody>";
-                    $totalGeneral = 0; // Dans un premier temps, avant la boucle, on initialise une nouvelle variable $totalGeneral à zéro
-                    foreach($_SESSION['products'] as $index => $product){ //$index : aura pour valeur l'index du tableau $_SESSION['products'] parcouru. $product : cette variable contiendra le produit, sous forme de tableau, tel que l'a créé et stocké en session le fichier traitement.php. 
-                    echo "<table>",
-                    "<thead>", // <thead>, afin de bien décomposer les données de chaque produit.
-                        "<tr>",
-                            "<td><form action='./Traitement.php' method='post'><input class='sub-element' type='submit' name='$index' value='X'></form>" . $index . "</td>",
-                            "<td>" . $product['name'] . "</td>",
-                            "<td>" . number_format($product['price'], 2, ",", "&nbsp;")  . "&nbsp;€</td>", //number_format(variable à modifier, nombre de décimales souhaité, caractère séparateur décimal, caractère séparateur de milliers5);              
-                            "<td>
-                        <form action='./Traitement.php' method='post'>
-                            <input class='add-qtt' type='submit' name='" . $index . "addQtt' value='+'>
-                            " . $product['qtt'] . "
-                            <input class='sub-qtt' type='submit' name='" . $index . "subQtt' value='-'>
-                        </form>
-                    </td>",
-                            "<td>" . number_format($product['total'], 2, ",", "&nbsp;")  . "&nbsp;€</td>", // Le caractère HTML &nbsp; est un espace insécable.
-                        "</tr>";
-                        $totalGeneral += $product['total']; // À l'intérieur de la boucle, grâce à l'opérateur combiné +=, on ajoute le total du produit parcouru à la valeur de $totalGeneral, qui augmente d'autant pour chaque produit.
+                    if(!isset($_SESSION['products']) || empty($_SESSION['products'])){ // Soit la clé "products" du tableau de session $_SESSION n'existe pas : !isset(),Soit cette clé existe mais ne contient aucune donnée : empty().
+                        echo "<h3>Aucun produit...</h3>
+                        <img src='./Img/Empty-amico.svg'>";
+                    }else{
+                        echo " <h3>Produits ajoutés :</h3>
+                        
+                        <table>",
+                                "<thead>", // <thead>, afin de bien décomposer les données de chaque produit.
+                                    "<tr>",
+                                        "<th>#</th>",
+                                        "<th>Nom</th>",
+                                        "<th>Prix</th>",
+                                        "<th>Quantité</th>",
+                                        "<th>Total</th>",
+                                    "</tr>",
+                                "</thead>",
+                                "<tbody>";
+                        $totalGeneral = 0; // Dans un premier temps, avant la boucle, on initialise une nouvelle variable $totalGeneral à zéro
+                        foreach($_SESSION['products'] as $index => $product){ //$index : aura pour valeur l'index du tableau $_SESSION['products'] parcouru. $product : cette variable contiendra le produit, sous forme de tableau, tel que l'a créé et stocké en session le fichier traitement.php. 
+                        echo "<table>",
+                        "<thead>", // <thead>, afin de bien décomposer les données de chaque produit.
+                            "<tr>",
+                                "<td>
+                                    <form action='./Traitement.php' method='post'>
+                                        <input class='sub-element' type='submit' name='$index' value='X'>
+                                    </form>" . $index . "
+                                </td>",
+                                "<td>" . $product['name'] . "</td>",
+                                "<td>" . number_format($product['price'], 2, ",", "&nbsp;")  . "&nbsp;€</td>", //number_format(variable à modifier, nombre de décimales souhaité, caractère séparateur décimal, caractère séparateur de milliers5);              
+                                "<td>
+                                    <form action='./Traitement.php' method='post'>
+                                        <input class='add-qtt' type='submit' name='" . $index . "addQtt' value='+'>
+                                        " . $product['qtt'] . "
+                                        <input class='sub-qtt' type='submit' name='" . $index . "subQtt' value='-'>
+                                    </form>
+                                </td>",
+                                "<td>" . number_format($product['total'], 2, ",", "&nbsp;")  . "&nbsp;€</td>", // Le caractère HTML &nbsp; est un espace insécable.
+                            "</tr>";
+                            $totalGeneral += $product['total']; // À l'intérieur de la boucle, grâce à l'opérateur combiné +=, on ajoute le total du produit parcouru à la valeur de $totalGeneral, qui augmente d'autant pour chaque produit.
+                        }
+
+                        echo"<tr>",
+                                "<td colspan=4>Total général : </td>", // Nous affichons une dernière ligne avant de refermer notre tableau. Cette ligne contient deux cellules : une cellule fusionnée de 4 cellules (colspan=4) pour l'intitulé,
+                                "<td><strong>" . number_format($totalGeneral, 2, ",", "&nbsp;") . "&nbsp;€</strong></td>", //et une cellule affichant le contenu formaté de $totalGeneral avec number_format().
+                            "</tr>",
+                        "</tbody>",
+                        "</table>";
                     }
 
-                    echo"<tr>",
-                            "<td colspan=4>Total général : </td>", // Nous affichons une dernière ligne avant de refermer notre tableau. Cette ligne contient deux cellules : une cellule fusionnée de 4 cellules (colspan=4) pour l'intitulé,
-                            "<td><strong>" . number_format($totalGeneral, 2, ",", "&nbsp;") . "&nbsp;€</strong></td>", //et une cellule affichant le contenu formaté de $totalGeneral avec number_format().
-                        "</tr>",
-                    "</tbody>",
-                    "</table>";
-                }
-
-                if(isset($_SESSION['products']) == 0){
-                    echo "";
-                }else{
-                    echo "<form class='delete-all' action='./Traitement.php' method='post'>
-                            <input type='submit' name='deleteAll' value='Supprimer tout les articles'>
-                        </form>";
-                }
-
-                
+                    if (isset($_SESSION['products']) == 0) {
+                        echo ""; // Ne rien afficher si la clé 'products' du tableau $_SESSION n'est pas définie ou est vide
+                    } else {
+                        echo "<form class='delete-all' action='./Traitement.php' method='post'>
+                                <input type='submit' name='deleteAll' value='Supprimer tout les articles'>
+                            </form>"; // Affiche un formulaire avec un bouton pour supprimer tous les articles si la clé 'products' du tableau $_SESSION est définie et n'est pas vide
+                    }
                 ?>
             </div>
         </div>

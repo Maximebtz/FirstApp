@@ -66,7 +66,7 @@ nav span {
 .card label input {
   transition: all 0.4s ease-in-out;
   font-weight: 400;
-  color: rgb(45, 45, 62);
+  color: #3d3d93;
   background-color: rgba(248, 248, 255, 0.8);
   border-radius: 25px;
   padding: 0 15px;

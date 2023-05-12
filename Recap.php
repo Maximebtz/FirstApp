@@ -46,7 +46,13 @@
                             "<td><form action='./Traitement.php' method='post'><input class='sub-element' type='submit' name='$index' value='X'></form>" . $index . "</td>",
                             "<td>" . $product['name'] . "</td>",
                             "<td>" . number_format($product['price'], 2, ",", "&nbsp;")  . "&nbsp;€</td>", //number_format(variable à modifier, nombre de décimales souhaité, caractère séparateur décimal, caractère séparateur de milliers5);              
-                            "<td><form action='./Traitement.php' method='post'><input class='add-qtt' type='submit' name='' value='+'>" . $product['qtt'] . "<input class='sub-qtt' type='submit' name='' value='-'></form></td>",
+                            "<td>
+                        <form action='./Traitement.php' method='post'>
+                            <input class='add-qtt' type='submit' name='" . $index . "addQtt' value='+'>
+                            " . $product['qtt'] . "
+                            <input class='sub-qtt' type='submit' name='" . $index . "subQtt' value='-'>
+                        </form>
+                    </td>",
                             "<td>" . number_format($product['total'], 2, ",", "&nbsp;")  . "&nbsp;€</td>", // Le caractère HTML &nbsp; est un espace insécable.
                         "</tr>";
                         $totalGeneral += $product['total']; // À l'intérieur de la boucle, grâce à l'opérateur combiné +=, on ajoute le total du produit parcouru à la valeur de $totalGeneral, qui augmente d'autant pour chaque produit.

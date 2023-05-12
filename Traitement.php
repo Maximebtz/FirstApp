@@ -1,50 +1,57 @@
 <?php
+session_start(); // Démarrer une session sur le serveur pour l'utilisateur courant ou récupérer la session existante s'il y en a une.
 
-session_start(); //Démarrer une session sur le serveur pour l'utilisateur courant, ou récupérer la session de ce même utilisateur s'il en avait déjà une.
+if(isset($_POST['submit'])){ // Vérifier si le bouton de soumission du formulaire a été déclenché
 
-    if(isset($_POST['submit'])){ // Vérification de l'existence 'submit'    
+    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS); // Nettoyer le champ 'name' en supprimant les caractères spéciaux et les balises HTML potentielles
+    $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION); // Valider le champ 'price' en tant que nombre à virgule et permettre l'utilisation du caractère '.' ou ',' pour la décimale
+    $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT); // Valider le champ 'qtt' en tant que nombre entier positif
 
-        $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS); // FILTER_SANITIZE_STRING supp une chaine de caractère de toute présence de caractères spéciaux et de toute balise HTML potentielle ou les encode. Pas d'injection de code HTML possible !
-        $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION); // FILTER_VALIDATE_FLOAT (champ 'price') : validera le prix que s'il est un nombre à virgule (pas de texte ou autre…), le drapeau FILTER_FLAG_ALLOW_FRACTION est ajouté pour permettre l'utilisation du caractère "," ou "." pour la décimale.
-        $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT); // FILTER_VALIDATE_INT (champ "qtt") : ne validera la quantité que si celle-ci est un nombre entier, au moins égal à 1.
-        
-        if($name && $price && $qtt){ // À la suite de cela, nous disposons de trois variables $name, $price et $qtt censées contenir respectivement les valeurs nettoyées et/ou validées du formulaire.
+    if($name && $price && $qtt){ // Vérifier si les valeurs des champs sont valides
 
-            $product = [ // Construire pour chaque produit un tableau associatif $product
-                "name" => $name,
-                "price" => $price,
-                "qtt" => $qtt,
-                "total" => $price*$qtt,
-            ];
+        $product = [ // Créer un tableau associatif pour représenter le produit
+            "name" => $name,
+            "price" => $price,
+            "qtt" => $qtt,
+            "total" => $price * $qtt,
+        ];
 
-            $_SESSION['products'][] = $product; /* On sollicite le tableau de session $_SESSION fourni par PHP. 
-                                                Les deux crochets "[]"2 sont un raccourci pour indiquer à cet emplacement que nous 
-                                                ajoutons une nouvelle entrée au futur tableau "products" associé à cette clé. 
-                                                $_SESSION["products"] doit être lui aussi un tableau afin d'y stocker de nouveaux 
-                                                produits par la suite.*/ 
+        $_SESSION['products'][] = $product; // Ajouter le produit au tableau 'products' dans la session
 
-            $_SESSION['error_message'] = "<span class='success'> +1 </span>";
+        $_SESSION['error_message'] = "<span class='success'> +1 </span>"; // Définir un message de succès
 
-        } else { // Une ou plusieurs valeurs du formulaire sont invalides, donc on affiche un message d'erreur
-            
-            $_SESSION['error_message'] = "<span class='error'> Nop !!</span>";
-        
-        }
+    } else { // Si une ou plusieurs valeurs du formulaire sont invalides
+
+        $_SESSION['error_message'] = "<span class='error'> Nop !!</span>"; // Définir un message d'erreur
+
     }
-    
-    if(isset($_POST['deleteAll'])){
-        session_destroy(); //Suppression de la session
-    }
+}
 
-    
-    
-    
-    header("Location:Index.php"); // Redirection grâce à la fonction header()
-    
-    foreach($_SESSION['products'] as $index => $product){
-        if(isset($_POST[$index] )){
-                unset($_SESSION['products'][$index]);
-                header("Location:Recap.php");
+if(isset($_POST['deleteAll'])){ // Vérifier si le bouton 'deleteAll' a été déclenché
+    session_destroy(); // Supprimer la session de l'utilisateur
+}
+
+header("Location: Index.php"); // Rediriger vers la page 'Index.php'
+
+foreach($_SESSION['products'] as $index => $product){ // Parcourir les produits dans le tableau 'products' de la session
+    if(isset($_POST[$index])){ // Vérifier si un bouton spécifique à un produit a été déclenché
+        unset($_SESSION['products'][$index]); // Supprimer le produit du tableau 'products' dans la session
+        header("Location: Recap.php"); // Rediriger vers la page 'Recap.php'
+    }
+}
+
+
+    foreach ($_SESSION['products'] as $index => $product) {
+        if (isset($_POST[$index . 'addQtt'])) { // Bouton pour incrémenter la quantité
+            $_SESSION['products'][$index]['qtt'] += 1; // Incrémenter la quantité du produit
+            $_SESSION['products'][$index]['total'] = $_SESSION['products'][$index]['price'] * $_SESSION['products'][$index]['qtt']; // Mettre à jour le prix total en fonction de la quantité
+            header("Location: Recap.php"); // Rediriger vers la page Recap.php
+        } elseif (isset($_POST[$index . 'subQtt'])) { // Bouton pour décrémenter la quantité
+            if ($_SESSION['products'][$index]['qtt'] > 1) { // Vérifier si la quantité est supérieure à 1 avant de décrémenter
+                $_SESSION['products'][$index]['qtt'] -= 1; // Décrémenter la quantité du produit
+                $_SESSION['products'][$index]['total'] = $_SESSION['products'][$index]['price'] * $_SESSION['products'][$index]['qtt']; // Mettre à jour le prix total en fonction de la quantité
+            }
+            header("Location: Recap.php"); // Rediriger vers la page Recap.php
         }
     }
 ?>

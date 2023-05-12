@@ -121,6 +121,30 @@ td {
   white-space: nowrap;
 }
 
+.add-qtt {
+  border: none;
+  background: none;
+  color: rgb(188, 226, 158);
+  font-size: larger;
+  padding: 0 5px;
+  transition: all 0.2s ease-in-out;
+}
+.add-qtt:hover {
+  transform: scale(1.2);
+}
+
+.sub-qtt {
+  border: none;
+  background: none;
+  color: rgb(239, 75, 75);
+  font-size: larger;
+  padding: 0 5px;
+  transition: all 0.2s ease-in-out;
+}
+.sub-qtt:hover {
+  transform: scale(1.2);
+}
+
 td:last-child {
   color: ghostwhite;
   font-weight: 600;

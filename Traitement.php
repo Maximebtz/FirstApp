@@ -41,10 +41,10 @@ session_start(); //Démarrer une session sur le serveur pour l'utilisateur coura
     
     header("Location:Index.php"); // Redirection grâce à la fonction header()
     
-    foreach($_SESSION['products'] as $index => $products){
-        if(isset($_POST['subElement'])){
+    foreach($_SESSION['products'] as $index => $product){
+        if(isset($_POST[$index] )){
                 unset($_SESSION['products'][$index]);
+                header("Location:Recap.php");
         }
     }
-
 ?>

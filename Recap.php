@@ -70,9 +70,7 @@
                         "</table>";
                     }
 
-                    if (isset($_SESSION['products']) == 0) {
-                        echo ""; // Ne rien afficher si la clé 'products' du tableau $_SESSION n'est pas définie ou est vide
-                    } else {
+                    if (isset($_SESSION['products']) && !empty($_SESSION['products'])) {
                         echo "<form class='delete-all' action='./Traitement.php' method='post'>
                                 <input type='submit' name='deleteAll' value='Supprimer tout les articles'>
                             </form>"; // Affiche un formulaire avec un bouton pour supprimer tous les articles si la clé 'products' du tableau $_SESSION est définie et n'est pas vide

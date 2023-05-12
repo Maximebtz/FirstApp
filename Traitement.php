@@ -30,12 +30,13 @@
     }
 
 
-    if(isset($_POST['deleteAll'])){ // Vérifier si le bouton 'deleteAll' a été déclenché
-        session_destroy(); // Supprimer la session de l'utilisateur
-    }
-
+    
     header("Location: Index.php"); // Rediriger vers la page 'Index.php'
-
+    
+    if(isset($_POST['deleteAll'])){ // Vérifier si le bouton 'deleteAll' a été déclenché
+        $_SESSION['products'] = array(); // Supprimer la session de l'utilisateur
+        header("Location: Recap.php"); // Rediriger vers la page 'Recap.php'
+    }
     
     foreach($_SESSION['products'] as $index => $product){ // Parcourir les produits dans le tableau 'products' de la session
         if(isset($_POST[$index])){ // Vérifier si un bouton spécifique à un produit a été déclenché
@@ -43,20 +44,19 @@
             header("Location: Recap.php"); // Rediriger vers la page 'Recap.php'
         }
     }
-    
-    
-    foreach($_SESSION['products'] as $index => $product){ 
-        if(isset($_POST[$index . 'addQtt'])){
-            $_SESSION['products'][$index]['qtt'] += 1;
-            $_SESSION['products'][$index]['total'] = $_SESSION['products'][$index]['qtt'] * $_SESSION['products'][$index]['price'];
-            header("Location : Recap.php");
-        } elseif (isset($_POST[$index . 'subQtt'])){
-            if($_SESSION['products'][$index]['qtt'] > 1){
-                $_SESSION['products'][$index]['qtt'] -= 1;
-                $_SESSION['products'][$index]['total'] = $_SESSION['products'][$index]['qtt'] * $_SESSION['products'][$index]['price'];
-                header("Location : Recap.php");
+
+
+    foreach ($_SESSION['products'] as $index => $product) {
+        if (isset($_POST[$index . 'addQtt'])) { // Bouton pour incrémenter la quantité
+            $_SESSION['products'][$index]['qtt'] += 1; // Incrémenter la quantité du produit
+            $_SESSION['products'][$index]['total'] = $_SESSION['products'][$index]['price'] * $_SESSION['products'][$index]['qtt']; // Mettre à jour le prix total en fonction de la quantité
+            header("Location: Recap.php"); // Rediriger vers la page Recap.php
+        } elseif (isset($_POST[$index . 'subQtt'])) { // Bouton pour décrémenter la quantité
+            if ($_SESSION['products'][$index]['qtt'] > 1) { // Vérifier si la quantité est supérieure à 1 avant de décrémenter
+                $_SESSION['products'][$index]['qtt'] -= 1; // Décrémenter la quantité du produit
+                $_SESSION['products'][$index]['total'] = $_SESSION['products'][$index]['price'] * $_SESSION['products'][$index]['qtt']; // Mettre à jour le prix total en fonction de la quantité
             }
+            header("Location: Recap.php"); // Rediriger vers la page Recap.php
         }
     }
-    
 ?>

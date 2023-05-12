@@ -21,11 +21,8 @@
         <div class="wrapper"> 
             <div class="card">   
                 <?php
-                // echo "<pre>";
-                // var_dump($_SESSION);
-                // echo "</pre>";
                 if(!isset($_SESSION['products']) || empty($_SESSION['products'])){ // Soit la clé "products" du tableau de session $_SESSION n'existe pas : !isset(),Soit cette clé existe mais ne contient aucune donnée : empty().
-                    echo "<p>Aucun produit...</p>
+                    echo "<h3>Aucun produit...</h3>
                     <img src='./Img/Empty-amico.svg'>";
                 }else{
                     echo " <h3>Produits ajoutés :</h3>
@@ -46,7 +43,7 @@
                     echo "<table>",
                     "<thead>", // <thead>, afin de bien décomposer les données de chaque produit.
                         "<tr>",
-                            "<td>" . $index . "</td>",
+                            "<td><form action='./Traitement.php' method='post'><input class='sub-element' type='submit' name='subElement' value='X'></form>" . $index . "</td>",
                             "<td>" . $product['name'] . "</td>",
                             "<td>" . number_format($product['price'], 2, ",", "&nbsp;")  . "&nbsp;€</td>", //number_format(variable à modifier, nombre de décimales souhaité, caractère séparateur décimal, caractère séparateur de milliers5);              
                             "<td>" . $product['qtt'] . "</td>",
@@ -66,10 +63,12 @@
                 if(isset($_SESSION['products']) == 0){
                     echo "";
                 }else{
-                    echo "<form action='./Traitement.php' method='post'>
+                    echo "<form class='delete-all' action='./Traitement.php' method='post'>
                             <input type='submit' name='deleteAll' value='Supprimer tout les articles'>
                         </form>";
                 }
+
+                
                 ?>
             </div>
         </div>

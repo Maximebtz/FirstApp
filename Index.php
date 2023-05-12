@@ -53,7 +53,7 @@
                         <?php 
                             if (isset($_SESSION['success_message'])) {
                                 // Affichage du message de succès s'il est défini dans la session
-                                echo "<span class='success'>" . $_SESSION['success_message'] . "</span>";
+                                echo  $_SESSION['success_message'];
                             
                                 // Suppression du message de succès de la session pour qu'il n'apparaisse pas à nouveau après le rechargement de la page
                                 unset($_SESSION['success_message']);
@@ -61,7 +61,7 @@
                             
                             if (isset($_SESSION['error_message'])) {
                                 // Affichage du message d'erreur s'il est défini dans la session
-                                echo "<span class='error'>" . $_SESSION['error_message'] . "</span>";
+                                echo $_SESSION['error_message'];
                             
                                 // Suppression du message d'erreur de la session pour qu'il n'apparaisse pas à nouveau après le rechargement de la page
                                 unset($_SESSION['error_message']);

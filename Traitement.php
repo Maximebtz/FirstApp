@@ -23,19 +23,28 @@ session_start(); //Démarrer une session sur le serveur pour l'utilisateur coura
                                                 $_SESSION["products"] doit être lui aussi un tableau afin d'y stocker de nouveaux 
                                                 produits par la suite.*/ 
 
-            $_SESSION['error_message'] = "+1";
+            $_SESSION['error_message'] = "<span class='success'> +1 </span>";
 
         } else { // Une ou plusieurs valeurs du formulaire sont invalides, donc on affiche un message d'erreur
             
-            $_SESSION['error_message'] = "Nop !!";
+            $_SESSION['error_message'] = "<span class='error'> Nop !!</span>";
         
         }
-        
     }
     
     if(isset($_POST['deleteAll'])){
         session_destroy(); //Suppression de la session
     }
+
     
-header("Location:Index.php"); // Redirection grâce à la fonction header()
+    
+    
+    header("Location:Index.php"); // Redirection grâce à la fonction header()
+    
+    foreach($_SESSION['products'] as $index => $products){
+        if(isset($_POST['subElement'])){
+                unset($_SESSION['products'][$index]);
+        }
+    }
+
 ?>

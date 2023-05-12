@@ -70,7 +70,7 @@
                         "</table>";
                     }
 
-                    if (isset($_SESSION['products']) && !empty($_SESSION['products'])) {
+                    if (isset($_SESSION['products']) && !empty($_SESSION['products'])) { //Si il trouve la session (isset) ['products'] et que ['products']  n'est pas vide (!empty) alors echo le bouton
                         echo "<form class='delete-all' action='./Traitement.php' method='post'>
                                 <input type='submit' name='deleteAll' value='Supprimer tout les articles'>
                             </form>"; // Affiche un formulaire avec un bouton pour supprimer tous les articles si la clé 'products' du tableau $_SESSION est définie et n'est pas vide
